@@ -1,0 +1,14 @@
+<config>
+    <modules>
+        <Mpw_ReactJs>
+            <version>0.1.0</version>
+        </Mpw_ReactJs>
+    </modules>
+    <global>
+        <blocks>
+            <reactjs>
+                <class>Mpw_ReactJs_Block</class>
+            </reactjs>
+        </blocks>
+    </global>
+</config>

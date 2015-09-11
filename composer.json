@@ -1,0 +1,30 @@
+{
+    "name": "mpw/mage-reactjs",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer", "url": "http://packages.firegento.com"
+        }
+    ],
+    "require": {
+        "reactjs/react-php-v8js": "~1.0"
+    },
+    "require-dev": {
+        "magento/core": "~1.9",
+        "magento-hackathon/magento-composer-installer": "~2.0"
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "": [
+                "src/",
+                "tmp/mage/app/code/local",
+                "tmp/mage/app/code/community",
+                "tmp/mage/app/code/core",
+                "tmp/mage/lib"
+            ]
+        }
+    },
+    "extra": {
+        "magento-root-dir": "./tmp/mage"
+    }
+}

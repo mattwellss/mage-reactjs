@@ -1,0 +1,9 @@
+<script>
+<?= $this->getSrc() ?>
+
+React.render(
+    React.createElement(
+        <?= $this->getComponentName() ?>,
+        <?= json_encode($this->getTemplateData()) ?>),
+    <?= $this->getDestination() ?>);
+</script>
