@@ -4,6 +4,7 @@ class Mpw_ReactJs_Block_Bundle extends Mage_Core_Block_Template
 {
     protected $_frameOpenTag = 'script';
     protected $_frameCloseTag = '/script';
+    protected $_allowSymlinks = 1;
 
     public function _beforeToHtml()
     {
