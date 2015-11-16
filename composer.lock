@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "0da808e9da300e1ebe42e3af289f10d0",
+    "content-hash": "7adc521a6f3bc9fa3203bf2b03dcbc49",
     "packages": [
         {
             "name": "reactjs/react-php-v8js",
@@ -91,23 +92,25 @@
         },
         {
             "name": "eloquent/enumeration",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eloquent/enumeration.git",
-                "reference": "9c50109cf25b2008b9b8233b814e50e0cdf8b737"
+                "reference": "0242859435d9b135939816858348556d3cde9e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eloquent/enumeration/zipball/9c50109cf25b2008b9b8233b814e50e0cdf8b737",
-                "reference": "9c50109cf25b2008b9b8233b814e50e0cdf8b737",
+                "url": "https://api.github.com/repos/eloquent/enumeration/zipball/0242859435d9b135939816858348556d3cde9e3c",
+                "reference": "0242859435d9b135939816858348556d3cde9e3c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
             "require-dev": {
-                "icecave/archer": "~1"
+                "icecave/archer": "dev-develop",
+                "phpunit/phpunit": "^4",
+                "sami/sami": "^3"
             },
             "type": "library",
             "autoload": {
@@ -136,7 +139,7 @@
                 "set",
                 "type"
             ],
-            "time": "2014-03-13 01:16:59"
+            "time": "2015-11-03 22:21:38"
         },
         {
             "name": "eloquent/liberator",
@@ -452,16 +455,16 @@
         },
         {
             "name": "magento/core",
-            "version": "1.9.2.1",
+            "version": "1.9.2.2-patch1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bragento/magento-core.git",
-                "reference": "2802bec4c42fb52a12cf328fa243253e9a7ec64d"
+                "reference": "5294894d1500f09de4e497732b94a3a7d1525263"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bragento/magento-core/zipball/2802bec4c42fb52a12cf328fa243253e9a7ec64d",
-                "reference": "2802bec4c42fb52a12cf328fa243253e9a7ec64d",
+                "url": "https://api.github.com/repos/bragento/magento-core/zipball/5294894d1500f09de4e497732b94a3a7d1525263",
+                "reference": "5294894d1500f09de4e497732b94a3a7d1525263",
                 "shasum": ""
             },
             "type": "magento-core",
@@ -559,10 +562,10 @@
             "description": "Magento Core",
             "homepage": "http://www.magentocommerce.com",
             "support": {
-                "source": "https://github.com/bragento/magento-core/tree/1.9",
+                "source": "https://github.com/bragento/magento-core/tree/1.9.2.2-patch1",
                 "issues": "https://github.com/bragento/magento-core/issues"
             },
-            "time": "2015-08-06 05:21:06"
+            "time": "2015-11-03 10:06:41"
         }
     ],
     "aliases": [],

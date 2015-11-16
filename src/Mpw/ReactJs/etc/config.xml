@@ -10,5 +10,10 @@
                 <class>Mpw_ReactJs_Block</class>
             </reactjs>
         </blocks>
+        <helpers>
+            <reactjs>
+                <class>Mpw_ReactJs_Helper</class>
+            </reactjs>
+        </helpers>
     </global>
 </config>

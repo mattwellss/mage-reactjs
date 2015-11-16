@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "babel-cli": "^6.1.18",
+    "babel-core": "6",
+    "babel-plugin-transform-react-jsx": "^6.1.18",
+    "body-parser": "1",
+    "browserify": "12",
+    "express": "4",
+    "react": "0.14",
+    "react-dom": "0.14",
+    "tmp": "0",
+    "uglifyify": "3"
+  },
+  "babel": {
+    "plugins": [
+      "transform-react-jsx"
+    ]
+  }
+}

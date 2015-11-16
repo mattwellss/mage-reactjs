@@ -2,39 +2,87 @@
 
 class Mpw_ReactJs_Helper_Renderer extends Mage_Core_Helper_Abstract
 {
-    const REACT_SRC_PATH = './react.min.js';
+    const REACT_SRC_PATH = './react.js';
 
-    protected $reactSrc;
+    protected $_reactSrc;
+    protected $_requestProto;
+
+    /**
+     * @var Mage_Core_Block_Template
+     */
+    protected $_reactBundleBlock;
+
+    public function __construct()
+    {
+        $this->setLayout(Mage::getSingleton('core/layout'));
+        $this->_outBlockProto = $this->getLayout()->createBlock('core/template');
+        $this->_requestProto = new Zend_Http_Client('http://localhost:3000');
+        $this->_requestProto->setHeaders(['Content-type' => 'application/json; charset=utf-8']);
+        $reactFrontend = $this->getLayout()
+            ->createBlock('reactjs/bundle', 'reactjs-bundle', ['template' => 'reactjs/bundle.phtml']);
+        $this->_reactBundleBlock = $this->getLayout()->createBlock('core/text_list');
+        $reactFrontend->setChild('components', $this->_reactBundleBlock);
+    }
 
     public function renderTemplate(Mpw_ReactJs_Block_Template $template)
     {
         try {
-            $rjsTemplate = new ReactJS(
-                $this->getReactSrc(),
-                $template->getSrc());
-
-            $rjsTemplate->setComponent(
-                $template->getComponentName(),
-                $template->getTemplateData());
-
-            return $rjsTemplate->getMarkup() . $this->renderTemplateJs($template);
+            $this->registerFrontendJs($template);
+            return $this->renderTemplateHtml($template);
         } catch (Exception $e) {
             var_dump($e);
         }
     }
 
-    protected function renderTemplateJs(Mpw_ReactJs_Block_Template $template)
+    /**
+     * @param  Mpw_ReactJs_Block_Template $template
+     * @return string
+     */
+    protected function renderTemplateHtml(Mpw_ReactJs_Block_Template $template)
     {
-        // $out = $this->getLayout()->createBlock('core/template');
-        $out = new Mage_Core_Block_Template;
-        $out->setTemplate('reactjs/embedded.phtml');
-        $out->setData([
-            'src' => $template->getSrc(),
-            'component_name' => $template->getComponentName(),
-            'template_data' => $template->getTemplateData(),
-            'destination' => $template->getDestination()]);
+        if ($template->getRenderMode() == $template::RENDER_FRONTEND) {
+            return '';
+        }
 
-        return $out->toHtml();
+        $response = $this->reactRequest(
+            'render',
+            [
+                'props' => $template->getTemplateData(),
+                'template' => $template->getTemplateFile()
+            ]);
+
+        return $response->getBody();
+
+        // $rjsTemplate = new ReactJS(
+        //     $this->getReactSrc(),
+        //     $template->getSrc());
+
+        // $rjsTemplate->setComponent(
+        //     $template->getComponentName(),
+        //     $template->getTemplateData());
+
+        // return $rjsTemplate->getMarkup();
+    }
+
+    public function reactRequest($endPoint, array $data = null)
+    {
+        $request = clone $this->_requestProto;
+        $requestUri = $request->getUri()->__toString() . '/' . $endPoint;
+        $request->setUri($requestUri);
+        if (is_array($data)) {
+            $request->setRawData(Mage::helper('core')->jsonEncode($data));
+        }
+
+        return $request->request($data ? Zend_Http_Client::POST : Zend_Http_Client::GET);
+    }
+
+    /**
+     * @param  Mpw_ReactJs_Block_Template $template
+     * @return void
+     */
+    protected function registerFrontendJs(Mpw_ReactJs_Block_Template $template)
+    {
+        $this->_reactBundleBlock->append($template);
     }
 
     protected function getReactSrc()

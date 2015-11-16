@@ -1,3 +1,5 @@
+var React = require('react');
+
 var Person = React.createClass({
     handleClick: function () {
         alert(this.props.name);
@@ -8,6 +10,9 @@ var Person = React.createClass({
                 onClick: this.handleClick,
                 value: 'Hello',
                 type: 'button'
-            }));
+            })
+        );
     }
 });
+
+module.exports = Person;

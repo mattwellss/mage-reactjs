@@ -2,10 +2,20 @@
 
 class Mpw_ReactJs_Block_Template extends Mage_Core_Block_Template
 {
-    public function __construct()
+    const RENDER_ISOMORPHIC = 1;
+    const RENDER_FRONTEND = 2;
+
+    protected function _construct()
     {
-        // $this->helper = Mage::helper('reactjs/renderer');
-        $this->helper = new Mpw_ReactJs_Helper_Renderer;
+        parent::_construct();
+
+        $this->helper = Mage::helper('reactjs/renderer');
+        $this->_renderMode = $this->getData('render_mode') ?: static::RENDER_ISOMORPHIC;
+    }
+
+    public function getRenderMode()
+    {
+        return $this->_renderMode;
     }
 
     protected function _beforeToHtml()
